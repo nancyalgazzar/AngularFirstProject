@@ -1,0 +1,55 @@
+<!-- <form>
+    <label>Task Title</label><input type="text" name="title">
+    <label>Description</label>
+    <textarea>
+
+    </textarea>
+    <label>Priority</label><select>
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+    </select>
+    <label>Due Date</label>
+    <input type="date">
+    <label>category</label><select>
+        <option value="work">Work</option>
+        <option value="personal">Personal</option>
+        <option value="study">Study</option>
+    </select>
+    <label>tags</label>
+    <textarea>
+
+    </textarea>
+</form> -->
+<style>
+    textarea {
+        resize: none;
+    }
+</style>
+<div class="container">
+    <div class="mb-3">
+        <label for="title" class="form-label">TaskTitle</label>
+        <input type="text" class="form-control" id="title" placeholder="title...">
+    </div>
+    <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea class="form-control" id="description" rows="3"></textarea>
+    </div>
+    <select class="form-select" aria-label="Default select example">
+        <option selected>Priority</option>
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+    </select>
+    <input type="date" class="form-control mb-2">
+    <select class="form-select" aria-label="Default select example">
+        <option selected>Category</option>
+        <option value="work">Work</option>
+        <option value="personal">Personal</option>
+        <option value="study">Study</option>
+    </select>
+    <div class="mb-3">
+        <label for="tag" class="form-label">Tag</label>
+        <textarea class="form-control" id="tag" rows="2"></textarea>
+    </div>
+</div>
