@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { Task, Priority, Category, State } from '../../Model/TaskModel';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Task, Priority, Category, State, changeOgj, changeType } from '../../Model/TaskModel';
 
 @Component({
   templateUrl: './TaskCard.html',
@@ -8,6 +8,18 @@ import { Task, Priority, Category, State } from '../../Model/TaskModel';
 })
 export class TaskCard {
   @Input() task: Task = new Task();
+  @Output() taskEmitter = new EventEmitter();
+  changed(btn: HTMLButtonElement) {
+    let c = changeType.update;
+    if (Object.values(changeType).includes(btn.innerText.toLowerCase())) {
+      c = changeType[btn.innerText.toLowerCase() as keyof typeof changeType];
+    }
+    let obj: changeOgj = {
+      ts: this.task,
+      ch: c,
+    };
+    this.taskEmitter.emit(obj);
+  }
   prioritycheck(): string {
     switch (Number(this.task.priority)) {
       case Priority.High:

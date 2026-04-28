@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { Task } from '../../Model/TaskModel';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { changeOgj, Task } from '../../Model/TaskModel';
 import { TaskCard } from '../TaskCard/TaskCard';
 import { ErrorMsg } from '../../Model/ErrorModel';
 
@@ -10,12 +10,16 @@ import { ErrorMsg } from '../../Model/ErrorModel';
   styleUrl: './done-tasks.css',
 })
 export class DoneTasks {
+  @Output() taskEmitter = new EventEmitter<changeOgj>();
   nocardsexist: ErrorMsg = {
-    msg : 'NO Done Tasks YET',
-    state : true,
+    msg: 'NO Done Tasks YET',
+    state: true,
   };
   @Input() tasks: Task[] = [];
-   noCards ():void {
-   this.nocardsexist.state=false
+  noCards(): void {
+    this.nocardsexist.state = false;
+  }
+  change(obj: changeOgj) {
+    this.taskEmitter.emit(obj);
   }
 }

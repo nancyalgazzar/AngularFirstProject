@@ -43,3 +43,11 @@ export class Task {
     this.id = uuid();
   }
 }
+export interface changeOgj {
+  ts: Task;
+  ch: changeType;
+}
+export enum changeType
+{
+  done,delete,update
+}

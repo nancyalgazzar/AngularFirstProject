@@ -11,8 +11,9 @@
     <p [innerText]="task.description" class="card-text">
       With supporting text below as a natural lead-in to additional content.
     </p>
-    <button class="btn btn-success me-2">Done</button>
-    <button class="btn btn-primary me-2">Update</button>
-    <button class="btn btn-danger me-2">Delete</button>
+    <button  (click)="changed(done)" [hidden]="!task.state" #done class="btn btn-success me-2">Done</button>
+    <!--  add the done as number enum 😡😡😡 -->
+    <button (click)="changed(update)" #update class="btn btn-primary me-2">Update</button>
+    <button (click)="changed(delete)" #delete class="btn btn-danger me-2">Delete</button>
   </div>
 </div>

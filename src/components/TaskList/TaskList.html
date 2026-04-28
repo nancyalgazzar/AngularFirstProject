@@ -11,20 +11,20 @@
 </ul>
 @switch (list) {
   @case (1) {
-    <app-done-tasks [tasks]="taskList"></app-done-tasks>
+    <app-done-tasks (taskEmitter)="change($event)" [tasks]="taskList"></app-done-tasks>
   }
   @case (2) {
-    <app-not-done-tasks [tasks]="taskList"></app-not-done-tasks>
+    <app-not-done-tasks (taskEmitter)="change($event)" [tasks]="taskList"></app-not-done-tasks>
   }
   @default {
     <div class="d-flex flex-wrap">
       @for (t of taskList; track t.ID) {
-        {{ noCards() }}
-        <app-taskcard [task]="t"></app-taskcard>
+        <!-- {{ noCards() }} -->
+        <app-taskcard (taskEmitter)="change($event)" [task]="t"></app-taskcard>
       }
-      @if (nocardsexist.state) {
+      <!-- @if (nocardsexist.state) {
         <p [innerText]="nocardsexist.msg"></p>
-      }
+      } -->
     </div>
   }
 }
