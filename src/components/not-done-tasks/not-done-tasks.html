@@ -1,0 +1,12 @@
+ <div class="d-flex flex-wrap">
+@for (t of tasks; track t.ID) {
+  @if (t.state == 1) {
+    {{ noCards() }}
+
+    <app-taskcard [task]="t"></app-taskcard>
+  }
+}
+@if (nocardsexist.state) {
+  <p [innerText]="nocardsexist.msg"></p>
+}
+</div>

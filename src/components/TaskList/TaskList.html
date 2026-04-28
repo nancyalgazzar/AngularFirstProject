@@ -1,1 +1,30 @@
-<taskcard-tag></taskcard-tag>
+<ul class="nav">
+  <li class="nav-item">
+    <button class="nav-link active" id="0" (click)="selectList($event.target)">ALl Tasks</button>
+  </li>
+  <li class="nav-item">
+    <button class="nav-link" id="1" (click)="selectList($event.target)">Done Tasks</button>
+  </li>
+  <li class="nav-item">
+    <button class="nav-link" id="2" (click)="selectList($event.target)">Not Done Tasks</button>
+  </li>
+</ul>
+@switch (list) {
+  @case (1) {
+    <app-done-tasks [tasks]="taskList"></app-done-tasks>
+  }
+  @case (2) {
+    <app-not-done-tasks [tasks]="taskList"></app-not-done-tasks>
+  }
+  @default {
+    <div class="d-flex flex-wrap">
+      @for (t of taskList; track t.ID) {
+        {{ noCards() }}
+        <app-taskcard [task]="t"></app-taskcard>
+      }
+      @if (nocardsexist.state) {
+        <p [innerText]="nocardsexist.msg"></p>
+      }
+    </div>
+  }
+}

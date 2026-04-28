@@ -1,5 +1,5 @@
 <app-header></app-header>
-<app-form></app-form>
-<tasklist-tag></tasklist-tag>
+<app-form (task)="getNewTask($event)"></app-form>
+<app-tasklist [taskList] = tasks></app-tasklist>
 
 <app-footer></app-footer>
