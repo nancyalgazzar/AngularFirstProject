@@ -31,7 +31,7 @@ class task {
 @Component({
     templateUrl: "./Form.html",
     styleUrl: "./Form.css",
-    selector: "form-tag",
+    selector: "app-form",
     imports: [NgbModule]
 })
 

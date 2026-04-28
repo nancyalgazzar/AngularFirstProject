@@ -3,13 +3,12 @@ import { Header } from '../components/Header/Header';
 import { Form } from '../components/Form/Form';
 import { TaskList } from '../components/TaskList/TaskList';
 import { Footer } from '../components/Footer/Footer';
-import { Slider } from "../components/slider/slider";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.html',
   styleUrl: './app.css',
-  imports: [Header, Form, TaskList, Footer, Slider]
+  imports: [Header, Form, TaskList, Footer]
 })
 export class App {
 }

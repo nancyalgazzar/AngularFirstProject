@@ -1,42 +1,23 @@
-<div class="container">
-    <img [src]="Images[index]">
-    <div class="btns">
-
-        <button (click)="prev()" id="prev">&lt;</button>
-        <button (click)="next()" id="next">&gt;</button>
-    </div>
-    <div class="lights">
-        <button (click)="setImage($event)" id="0"><span></span> </button>
-        <button (click)="setImage($event)" id="1"> <span></span></button>
-        <button (click)="setImage($event)" id="2"><span></span> </button>
-    </div>
-
-</div>
-<!-- <div>
-    <button (click)="slideshow()">slide show</button>
-</div>
-<div id="carouselExampleIndicators" class="carousel slide">
+<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-            aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-            aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-            aria-label="Slide 3"></button>
+        @for ( image of Images; track image; let indx = $index) {
+        <button type="button" data-bs-target="#carouselExampleAutoplaying" (click)="setImage($event)" id="{{indx}}"
+            [class]="idx===indx? 'active' : ''"></button>
+        }
     </div>
     <div class="carousel-inner">
-        @for ( image of ImagesObj; track image.state) {
-        <div class="carousel-item active" [class]="image.state? 'active':''">
-            <img src={{image.url}} class="d-block w-100" alt="imageAlt">
+        @for ( image of Images; track image; let indx = $index) {
+        <div class="carousel-item " [class]="idx===indx? 'active' : ''">
+            <img src={{image}} class="d-block w-100" alt="imageAlt">
         </div>
         }
     </div>
-    <button class="carousel-control-prev" type="button" (click)="prev()">
+    <button class="carousel-control-prev" type="button" (click)="prev()" data-bs-target="#carouselExampleAutoplaying">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
     </button>
-    <button class="carousel-control-next" type="button" (click)="next()">
+    <button class="carousel-control-next" type="button" (click)="next()" data-bs-target="#carouselExampleAutoplaying">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
     </button>
-</div> -->
+</div>

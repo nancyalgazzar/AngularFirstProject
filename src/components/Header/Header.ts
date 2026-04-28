@@ -1,10 +1,12 @@
 import { Component } from "@angular/core";
+import { Slider } from "../slider/slider";
 
 
 @Component({
     templateUrl: "./Header.html",
     styleUrl: "./Header.css",
-    selector: "header-tag"
+    selector: "app-header",
+    imports: [Slider]
 })
 
 export class Header { }
