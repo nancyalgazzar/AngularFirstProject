@@ -15,7 +15,9 @@
       Done
     </button>
     <!--  add the done as number enum 😡😡😡 -->
-    <button (click)="modal.showModal()"[hidden]="!task.state" #update class="btn btn-primary me-2">Update</button>
+    <button (click)="modal.showModal()" [hidden]="!task.state" #update class="btn btn-primary me-2">
+      Update
+    </button>
     <button (click)="changed(delete)" #delete class="btn btn-danger me-2">Delete</button>
   </div>
 </div>
@@ -25,7 +27,11 @@
       <button class="btn align-self-end" (click)="modal.close()">
         <i class="bi bi-x-lg text-black"></i>
       </button>
-      <app-form [tasksend]="task" [update]="true" (updateTask)="updated($event)"></app-form>
+      <app-form
+        [tasksend]="task"
+        [update]="true"
+        (updateTask)="updated($event); modal.close()"
+      ></app-form>
     </div>
   </div>
 </dialog>

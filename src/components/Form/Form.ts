@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class Form {
   Priority = Priority;
+  Category = Category;
   @Input() update: boolean = false;
   @Output('task') taskEmitter = new EventEmitter<Task>();
   @Output() updateTask = new EventEmitter<Task>();
@@ -18,18 +19,17 @@ export class Form {
   task: Task = new Task();
 
   register() {
-    let copy = Object.assign(new Task(), this.task);
-    this.task.clearValues();
+  
     if (!this.update) {
-      this.taskEmitter.emit(copy);
+      this.taskEmitter.emit(this.task);
     } else {
-      this.updateTask.emit(copy);
+      this.updateTask.emit(this.task);
     }
+    this.task = new Task()
   }
   @Input() tasksend: Task = new Task();
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes)
-    console.log(this.tasksend)
+    
     if (changes['tasksend'].currentValue) {
       Object.assign(this.task, this.tasksend);
     }

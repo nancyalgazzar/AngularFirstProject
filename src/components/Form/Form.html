@@ -22,35 +22,52 @@
     </textarea>
 </form> -->
 <style>
-    textarea {
-        resize: none;
-    }
+  textarea {
+    resize: none;
+  }
 </style>
 <div class="container">
-    <div class="mb-3">
-        <label for="title" class="form-label">TaskTitle</label>
-        <input [(ngModel)]="task.title" type="text" class="form-control" id="title" placeholder="title...">
-    </div>
-    <div class="mb-3">
-        <label for="description" class="form-label">Description</label>
-        <textarea  [(ngModel)]="task.description" class="form-control" id="description" rows="3"></textarea>
-    </div>
-    <select  [(ngModel)]="task.priority" class="form-select" aria-label="Default select example">
-        <option [ngValue]="Priority.NA" selected>Priority</option>
-        <option [ngValue]="Priority.Low">Low</option>
-        <option [ngValue]="Priority.Medium">Medium</option>
-        <option [ngValue]="Priority.High">High</option>
-    </select>
-    <input  [(ngModel)]="task.date" type="date" class="form-control mb-2">
-    <select  [(ngModel)]="task.category"  class="form-select" aria-label="Default select example">
-        <option value="" selected>Category</option>
-        <option value="work">Work</option>
-        <option value="personal">Personal</option>
-        <option value="study">Study</option>
-    </select>
-    <div class="mb-3">
-        <label for="tag" class="form-label">Tag</label>
-        <textarea  [(ngModel)]="task.tags" class="form-control" id="tag" rows="2"></textarea>
-    </div>
-    <button (click)="register()" class="btn btn-primary" [innerText]="update? 'Update': 'Register'"></button>
+  <div class="mb-3">
+    <label for="title" class="form-label">TaskTitle</label>
+    <input
+      [(ngModel)]="task.title"
+      type="text"
+      class="form-control"
+      id="title"
+      placeholder="title..."
+    />
+  </div>
+  <div class="mb-3">
+    <label for="description" class="form-label">Description</label>
+    <textarea
+      [(ngModel)]="task.description"
+      class="form-control"
+      id="description"
+      rows="3"
+    ></textarea>
+  </div>
+  <select [(ngModel)]="task.priority" class="form-select" aria-label="priority select">
+    <option [ngValue]="Priority.NA" selected disabled>Priority</option>
+    <option [ngValue]="Priority.Low">Low</option>
+    <option [ngValue]="Priority.Medium">Medium</option>
+    <option [ngValue]="Priority.High">High</option>
+  </select>
+  <p>BirthDate</p>
+  <input [(ngModel)]="task.date" type="date" class="form-control mb-2" />
+
+  <select [(ngModel)]="task.category" class="form-select" aria-label="category select">
+    <option [ngValue]="Category.NA" selected disabled>Category</option>
+    <option [ngValue]="Category.Personal">Personal</option>
+    <option [ngValue]="Category.Work">Work</option>
+    <option [ngValue]="Category.Study">Study</option>
+  </select>
+  <div class="mb-3">
+    <label for="tag" class="form-label">Tag</label>
+    <textarea [(ngModel)]="task.tags" class="form-control" id="tag" rows="2"></textarea>
+  </div>
+  <button
+    (click)="register()"
+    class="btn btn-primary"
+    [innerText]="update ? 'Update' : 'Register'"
+  ></button>
 </div>

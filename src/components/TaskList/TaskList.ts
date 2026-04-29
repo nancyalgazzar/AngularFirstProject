@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { TaskCard } from '../TaskCard/TaskCard';
-import { changeOgj, changeType, State, Task } from '../../Model/TaskModel';
+import { changeOgj, changeType, Priority, State, Task } from '../../Model/TaskModel';
 import { DoneTasks } from '../done-tasks/done-tasks';
 import { NotDoneTasks } from '../not-done-tasks/not-done-tasks';
 import { ErrorMsg } from '../../Model/ErrorModel';
@@ -13,15 +13,22 @@ import { ErrorMsg } from '../../Model/ErrorModel';
 })
 export class TaskList {
   ngOnChanges(changes: SimpleChanges): void {
-    if(!changes["task"].firstChange){
-      this.taskList.push(changes["task"].currentValue)
+    if (!changes['task'].firstChange) {
+      this.taskList.push(changes['task'].currentValue);
+      if ((changes['task'].currentValue as Task).state == State.Done) {
+        this.doneList.push(changes['task'].currentValue);
+      } else {
+        this.notdoneList.push(changes['task'].currentValue);
+      }
     }
   }
+  doneList: Task[] = [];
+  notdoneList: Task[] = [];
   nocardsexist: ErrorMsg = {
     msg: 'NO Tasks YET',
     state: true,
   };
-   taskList: Task[] = [];
+  taskList: Task[] = [];
   @Input() task!: Task;
   list = 0;
   selectList(e: EventTarget | null) {
@@ -33,31 +40,49 @@ export class TaskList {
     this.nocardsexist.state = false;
   }
   change(obj: changeOgj) {
-    console.log(obj);
     let index = -1;
-    if (this.taskList.includes(obj.ts)) {
-      index = this.taskList.indexOf(obj.ts);
-    } else return;
+    index = this.taskList.indexOf(obj.ts);
+
     switch (obj.ch) {
       case changeType.delete: {
-        console.log('del', changeType.delete);
-
+        if (index == -1) return;
+        if (this.doneList.indexOf(obj.ts) != -1) {
+          this.doneList = this.doneList.filter((p) => p.ID != obj.ts.ID);
+        } else {
+          this.notdoneList = this.notdoneList.filter((p) => p.ID != obj.ts.ID);
+        }
         this.taskList.splice(index, 1);
         break;
       }
       case changeType.done: {
-        console.log('indoen', changeType.done);
+        if (index == -1) return;
         this.taskList[index].state = State.Done;
+        this.notdoneList = this.notdoneList.filter((p) => p.ID != obj.ts.ID);
+        this.doneList.push(obj.ts);
+
         break;
       }
       default: {
         console.log('up');
+        console.log(this.taskList);
+        this.taskList = this.taskList.map((p) => {
+          if (p.ID == obj.ts.ID) return obj.ts;
+          else return p;
+        });
+        console.log(this.taskList);
 
-        Object.assign(this.taskList[index], obj.ts);
+        this.doneList = this.doneList.map((p) => {
+          if (p.ID == obj.ts.ID) return obj.ts;
+          else return p;
+        });
+
+        this.notdoneList = this.notdoneList.map((p) => {
+          if (p.ID == obj.ts.ID) return obj.ts;
+          else return p;
+        });
+
         break;
       }
     }
-    console.log(changeType.done)
-    console.log(this.taskList);
   }
 }

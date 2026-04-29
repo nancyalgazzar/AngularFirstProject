@@ -11,10 +11,10 @@
 </ul>
 @switch (list) {
   @case (1) {
-    <app-done-tasks (taskEmitter)="change($event)" [tasks]="taskList"></app-done-tasks>
+    <app-done-tasks (taskEmitter)="change($event)" [tasks]="doneList"></app-done-tasks>
   }
   @case (2) {
-    <app-not-done-tasks (taskEmitter)="change($event)" [tasks]="taskList"></app-not-done-tasks>
+    <app-not-done-tasks (taskEmitter)="change($event)" [tasks]="notdoneList"></app-not-done-tasks>
   }
   @default {
     <div class="d-flex flex-wrap">
