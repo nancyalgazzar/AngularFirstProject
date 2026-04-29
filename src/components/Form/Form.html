@@ -52,5 +52,5 @@
         <label for="tag" class="form-label">Tag</label>
         <textarea  [(ngModel)]="task.tags" class="form-control" id="tag" rows="2"></textarea>
     </div>
-    <button (click)="register()" class="btn btn-primary">Register</button>
+    <button (click)="register()" class="btn btn-primary" [innerText]="update? 'Update': 'Register'"></button>
 </div>

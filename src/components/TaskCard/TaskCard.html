@@ -11,9 +11,21 @@
     <p [innerText]="task.description" class="card-text">
       With supporting text below as a natural lead-in to additional content.
     </p>
-    <button  (click)="changed(done)" [hidden]="!task.state" #done class="btn btn-success me-2">Done</button>
+    <button (click)="changed(done)" [hidden]="!task.state" #done class="btn btn-success me-2">
+      Done
+    </button>
     <!--  add the done as number enum 😡😡😡 -->
-    <button (click)="changed(update)" #update class="btn btn-primary me-2">Update</button>
+    <button (click)="modal.showModal()" #update class="btn btn-primary me-2">Update</button>
     <button (click)="changed(delete)" #delete class="btn btn-danger me-2">Delete</button>
   </div>
 </div>
+<dialog #modal class="w-50">
+  <div class="modal-content">
+    <div class="w-100 d-flex flex-column justify-content-end">
+      <button class="btn align-self-end" (click)="modal.close()">
+        <i class="bi bi-x-lg text-black"></i>
+      </button>
+      <app-form [tasksend]="task" [update]="true" (updateTask)="updated($event)"></app-form>
+    </div>
+  </div>
+</dialog>
