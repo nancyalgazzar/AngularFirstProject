@@ -9,6 +9,7 @@ import { Form } from '../Form/Form';
   imports: [Form],
 })
 export class TaskCard {
+  Category = Category;
   @Input() task: Task = new Task();
   @Output() taskEmitter = new EventEmitter<changeOgj>();
   updated(t: Task) {
@@ -16,7 +17,6 @@ export class TaskCard {
       ts: t,
       ch: changeType.update,
     });
-    
   }
   changed(btn: HTMLButtonElement) {
     let c = changeType.update;

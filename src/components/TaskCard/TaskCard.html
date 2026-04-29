@@ -1,24 +1,53 @@
 <div
-  class="card border border-primary border-3 m-4 col-3"
+  class="card border border-primary border-3 m-4 col-3 h-100"
   style="width: 18rem"
   [class]="prioritycheck()"
 >
-  <h5 [innerText]="task.title" class="card-header">Featured</h5>
-  <div class="card-body">
-    <h5 [innerText]="task.date" class="card-title">
-      Special title treatment(<span [innerText]="task.state"></span>)
-    </h5>
-    <p [innerText]="task.description" class="card-text">
-      With supporting text below as a natural lead-in to additional content.
-    </p>
-    <button (click)="changed(done)" [hidden]="!task.state" #done class="btn btn-success me-2">
-      Done
-    </button>
-    <!--  add the done as number enum 😡😡😡 -->
-    <button (click)="modal.showModal()" [hidden]="!task.state" #update class="btn btn-primary me-2">
-      Update
-    </button>
-    <button (click)="changed(delete)" #delete class="btn btn-danger me-2">Delete</button>
+  <div class="card-header d-flex justify-content-between">
+    <div>
+      <span>Title: </span>
+      <h5 [innerText]="task.title ? task.title.substring(0,20) : '...'" class="d-inline"></h5>
+    </div>
+    <div class="card-title align-self-end">
+      <span>Date: </span>
+      <h5 [innerText]="task.date ? task.date : '...'" class="d-inline">
+        (<span [innerText]="task.state"></span>)
+      </h5>
+    </div>
+  </div>
+  <div class="card-body p-2 d-flex flex-column justify-content-between">
+    <div class="card-text">
+      <span>Description: </span>
+      <p [innerText]="task.description ? task.description.substring(0,20) : '...'" class="d-inline"></p>
+    </div>
+    <div class="card-text">
+      <span>Category: </span>
+      <h6 [innerText]="Category[task.category]" class="d-inline">
+        (<span [innerText]="task.state"></span>)
+      </h6>
+    </div>
+    <div class="card-text">
+      <span>Tags: </span>
+      <h6 [innerText]="task.tags ? task.tags.substring(0,20) : '...'" class="d-inline">
+        (<span [innerText]="task.state"></span>)
+      </h6>
+    </div>
+
+    <div class="align-self-center">
+      <button (click)="changed(done)" [hidden]="!task.state" #done class="btn btn-success me-2">
+        Done
+      </button>
+      <!--  add the done as number enum 😡😡😡 -->
+      <button
+        (click)="modal.showModal()"
+        [hidden]="!task.state"
+        #update
+        class="btn btn-primary me-2"
+      >
+        Update
+      </button>
+      <button (click)="changed(delete)" #delete class="btn btn-danger me-2">Delete</button>
+    </div>
   </div>
 </div>
 <dialog #modal class="w-50">
@@ -35,3 +64,4 @@
     </div>
   </div>
 </dialog>
+
