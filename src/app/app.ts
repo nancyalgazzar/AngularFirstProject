@@ -12,9 +12,8 @@ import { Task } from '../Model/TaskModel';
   imports: [Header, Form, TaskList, Footer],
 })
 export class App {
-  tasks: Task[] = [];
+  taskobj!: Task;
   getNewTask(task: Task) {
-    this.tasks.push(task);
-    console.log(this.tasks);
+    this.taskobj = task;
   }
 }

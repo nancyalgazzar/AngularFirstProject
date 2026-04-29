@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { TaskCard } from '../TaskCard/TaskCard';
 import { changeOgj, changeType, State, Task } from '../../Model/TaskModel';
 import { DoneTasks } from '../done-tasks/done-tasks';
@@ -12,11 +12,17 @@ import { ErrorMsg } from '../../Model/ErrorModel';
   imports: [TaskCard, DoneTasks, NotDoneTasks],
 })
 export class TaskList {
+  ngOnChanges(changes: SimpleChanges): void {
+    if(!changes["task"].firstChange){
+      this.taskList.push(changes["task"].currentValue)
+    }
+  }
   nocardsexist: ErrorMsg = {
     msg: 'NO Tasks YET',
     state: true,
   };
-  @Input() taskList: Task[] = [];
+   taskList: Task[] = [];
+  @Input() task!: Task;
   list = 0;
   selectList(e: EventTarget | null) {
     if (!e) return;
