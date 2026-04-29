@@ -1,11 +1,5 @@
 <div class="d-flex flex-wrap">
   @for (t of tasks; track t.ID) {
-    @if (t.state==0) {
-      {{ noCards() }}
-      <app-taskcard (taskEmitter)="change($event)" [task]="t"></app-taskcard>
-    }
-  }
-  @if (nocardsexist.state) {
-    <p [innerText]="nocardsexist.msg"></p>
+    <app-taskcard (taskEmitter)="change($event)" [task]="t"></app-taskcard>
   }
 </div>
