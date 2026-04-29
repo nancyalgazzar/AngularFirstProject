@@ -15,6 +15,7 @@ export class TaskList {
   ngOnChanges(changes: SimpleChanges): void {
     if (!changes['task'].firstChange) {
       this.taskList.push(changes['task'].currentValue);
+      this.count = this.taskList.length
       if ((changes['task'].currentValue as Task).state == State.Done) {
         this.doneList.push(changes['task'].currentValue);
       } else {
@@ -28,6 +29,7 @@ export class TaskList {
     msg: 'NO Tasks YET',
     state: true,
   };
+  count = 0;
   taskList: Task[] = [];
   @Input() task!: Task;
   list = 0;
