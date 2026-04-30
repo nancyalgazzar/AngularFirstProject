@@ -1,31 +1,54 @@
-<ul class="nav">
-  <li class="nav-item">
-    <button class="nav-link active" id="0" (click)="selectList($event.target)">ALl Tasks</button>
-  </li>
-  <li class="nav-item">
-    <button class="nav-link" id="1" (click)="selectList($event.target)">Done Tasks</button>
-  </li>
-  <li class="nav-item">
-    <button class="nav-link" id="2" (click)="selectList($event.target)">Not Done Tasks</button>
-  </li>
-</ul>
-@switch (list) {
-  @case (1) {
-    <app-done-tasks (taskEmitter)="change($event)" [tasks]="doneList"></app-done-tasks>
-  }
-  @case (2) {
-    <app-not-done-tasks (taskEmitter)="change($event)" [tasks]="notdoneList"></app-not-done-tasks>
-  }
-  @default {
-    <div class="d-flex flex-wrap">
-      @if (count > 0) {
-        @for (t of taskList; track t.ID) {
-          <app-taskcard (taskEmitter)="change($event)" [task]="t"></app-taskcard>
+<div class="container my-3">
+  <ul class="nav nav-tabs " id="myTab" role="tablist">
+    <li class="nav-item">
+      <button
+        class="nav-link"
+        id="0"
+        [class]="listType == 0 ? 'active' : ''"
+        
+        (click)="selectList($event.target)"
+      >
+        ALl
+      </button>
+    </li>
+    <li class="nav-item">
+      <button
+        class="nav-link"
+        id="1"
+        [class]="listType == 1 ? 'active' : ''"
+        (click)="selectList($event.target)"
+      >
+        Done
+      </button>
+    </li>
+    <li class="nav-item">
+      <button
+        class="nav-link"
+        id="2"
+        [class]="listType == 2 ? 'active' : ''"
+        (click)="selectList($event.target)"
+      >
+        Pending
+      </button>
+    </li>
+  </ul>
+  @switch (listType) {
+    @case (1) {
+      <app-done-tasks (taskEmitter)="change($event)" [tasks]="doneList"></app-done-tasks>
+    }
+    @case (2) {
+      <app-not-done-tasks (taskEmitter)="change($event)" [tasks]="notdoneList"></app-not-done-tasks>
+    }
+    @default {
+      <div class="d-flex flex-wrap">
+        @if (count > 0) {
+          @for (t of taskList; track t.ID) {
+            <app-taskcard (taskEmitter)="change($event)" [task]="t"></app-taskcard>
+          }
+        } @else {
+          <p>No tasks Yet 😓😓</p>
         }
-      } 
-      @else {
-        <p>No tasks Yet 😓😓</p>
-      }
-    </div>
+      </div>
+    }
   }
-}
+</div>

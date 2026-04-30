@@ -32,11 +32,11 @@ export class TaskList {
   count = 0;
   taskList: Task[] = [];
   @Input() task!: Task;
-  list = 0;
+  listType = 0;
   selectList(e: EventTarget | null) {
     if (!e) return;
     const btn = e as HTMLButtonElement;
-    this.list = Number(btn.id);
+    this.listType = Number(btn.id);
   }
   noCards(): void {
     this.nocardsexist.state = false;

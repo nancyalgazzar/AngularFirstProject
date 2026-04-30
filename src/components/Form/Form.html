@@ -1,26 +1,4 @@
-<!-- <form>
-    <label>Task Title</label><input type="text" name="title">
-    <label>Description</label>
-    <textarea>
 
-    </textarea>
-    <label>Priority</label><select>
-        <option value="low">Low</option>
-        <option value="medium">Medium</option>
-        <option value="high">High</option>
-    </select>
-    <label>Due Date</label>
-    <input type="date">
-    <label>category</label><select>
-        <option value="work">Work</option>
-        <option value="personal">Personal</option>
-        <option value="study">Study</option>
-    </select>
-    <label>tags</label>
-    <textarea>
-
-    </textarea>
-</form> -->
 <style>
   textarea {
     resize: none;
@@ -66,8 +44,9 @@
     <textarea [(ngModel)]="task.tags" class="form-control" id="tag" rows="2"></textarea>
   </div>
   <button
-    (click)="register()"
-    class="btn btn-primary"
-    [innerText]="update ? 'Update' : 'Register'"
+  (click)="register()"
+  class="btn btn-primary"
+  [innerText]="update ? 'Update' : 'Register'"
   ></button>
+  <p [innerText]="errorMsg.msg" [hidden]="!errorMsg.state" class="fs-6  fst-italic text-danger m-0"></p>
 </div>
