@@ -1,0 +1,52 @@
+<div class="d-flex justify-content-center align-items-center w-100" style="height: 100vh">
+  <form [formGroup]="form" class="w-50 border border-2 p-5 border-dark-subtle shadow-lg" (submit)="submitForm(form)">
+    <div class="mb-3">
+      <label for="UserName" class="form-label">UserName</label>
+      <input autocomplete="username" formControlName="username" name="UserName" type="text" class="form-control" id="UserName" />
+      @if( form.get('username')?.errors?.['required'] && form.get('username')?.dirty ){
+        <p class="fs-6 fst-italic text-danger">the UserName is a required field</p>
+      }
+      @else if( form.get('username')?.errors?.['spaced'] && form.get('username')?.dirty ){
+        <p class="fs-6 fst-italic text-danger">the UserName can't include spaces</p>
+      }
+      @else if( form.get('username')?.errors?.['minlength'] && form.get('username')?.dirty ){
+        <p class="fs-6 fst-italic text-danger">the UserName must be at least 6 characters</p>
+      }
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email address</label>
+      <input autocomplete="email"  formControlName="email" name="email" type="email" class="form-control" id="email" />
+      @if( form.get('email')?.errors?.['required'] && form.get('email')?.dirty ){
+        <p class="fs-6 fst-italic text-danger">the Email is a required field</p>
+      }
+      @else if( form.get('email')?.errors?.['email'] && form.get('email')?.dirty ){
+        <p class="fs-6 fst-italic text-danger">the Email field is not Valid</p>
+      }
+    
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input autocomplete="new-password" formControlName="password" name="password" type="password" class="form-control" id="password" />
+        @if(form.get('password')?.errors?.['required'] &&form.get('password')?.dirty){
+        <p class="fs-6 fst-italic text-danger">the password is a required field</p>
+      }
+      @else if(form.get('password')?.errors?.['pattern'] &&form.get('password')?.dirty){
+        <p class="fs-6 fst-italic text-danger">the password should contain letters and numbers only</p>
+      }
+    </div>
+    <div class="mb-3">
+      <label for="confirmPassword" class="form-label">Confirm Password</label>
+      <input autocomplete="current-password" formControlName="confirmPassword" name="confirmPassword" type="password" class="form-control" id="confirmPassword" />
+        @if(form.errors?.['matched'] &&form.get('confirmPassword')?.dirty && form.get('password')?.dirty){
+        <p class="fs-6 fst-italic text-danger">confirm Password doesn't match the Password</p>
+      }
+    </div>
+    <div class="mb-3 form-check">
+      <input formControlName="rememberMe" name="rememberMe" type="checkbox" class="form-check-input" id="rememberme" />
+      <label class="form-check-label" for="rememberme">Remember Me</label>
+     
+    </div>
+    <button type="submit" class="btn btn-primary">Sign Up</button>
+    <div class="text-center">    <a routerLink="/login"> Already have an account</a> </div>
+  </form>
+</div>

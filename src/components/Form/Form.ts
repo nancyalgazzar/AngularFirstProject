@@ -1,14 +1,19 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { Task, Priority, Category, State } from '../../Model/TaskModel';
-import { FormsModule } from '@angular/forms';
+import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
+import { Task, Priority, Category } from '../../Model/TaskModel';
+import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors} from '@angular/forms';
 import { ErrorMsg } from '../../Model/ErrorModel';
 
+// function ValidateDuedate(control: AbstractControl):null| ValidationErrors {
+//   if(control.value< new Date()){
+//     return {dateError:true}
+//   }
+//   return null;
+// }
 @Component({
   templateUrl: './Form.html',
   styleUrl: './Form.css',
   selector: 'app-form',
-  imports: [NgbModule, FormsModule],
+  imports: [FormsModule, ReactiveFormsModule],
 })
 export class Form {
   errorMsg: ErrorMsg = {
@@ -22,7 +27,14 @@ export class Form {
   @Output() updateTask = new EventEmitter<Task>();
 
   task: Task = new Task();
-
+  // form = new FormGroup({
+  //   title: new FormControl(''),
+  //   description: new FormControl(''),
+  //   priority: new FormControl(''),
+  //   category: new FormControl(''),
+  //   dueDate: new FormControl<Date>(new Date(), [ValidateDuedate]),
+  //   tags: new FormControl(''),
+  // });
   validInputs(): boolean {
     for (let input in this.task) {
       let temp = input as keyof typeof this.task;

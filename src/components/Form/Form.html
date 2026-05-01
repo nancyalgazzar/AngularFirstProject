@@ -1,4 +1,3 @@
-
 <style>
   textarea {
     resize: none;
@@ -14,6 +13,7 @@
       id="title"
       placeholder="title..."
     />
+
   </div>
   <div class="mb-3">
     <label for="description" class="form-label">Description</label>
@@ -30,7 +30,7 @@
     <option [ngValue]="Priority.Medium">Medium</option>
     <option [ngValue]="Priority.High">High</option>
   </select>
-  <p>BirthDate</p>
+  <p>Due Date</p>
   <input [(ngModel)]="task.date" type="date" class="form-control mb-2" />
 
   <select [(ngModel)]="task.category" class="form-select" aria-label="category select">
@@ -44,9 +44,13 @@
     <textarea [(ngModel)]="task.tags" class="form-control" id="tag" rows="2"></textarea>
   </div>
   <button
-  (click)="register()"
-  class="btn btn-primary"
-  [innerText]="update ? 'Update' : 'Register'"
+    (click)="register()"
+    class="btn btn-primary"
+    [innerText]="update ? 'Update' : 'Register'"
   ></button>
-  <p [innerText]="errorMsg.msg" [hidden]="!errorMsg.state" class="fs-6  fst-italic text-danger m-0"></p>
+  <p
+    [innerText]="errorMsg.msg"
+    [hidden]="!errorMsg.state"
+    class="fs-6 fst-italic text-danger m-0"
+  ></p>
 </div>
