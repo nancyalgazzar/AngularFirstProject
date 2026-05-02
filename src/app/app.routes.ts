@@ -7,7 +7,7 @@ import { NotFound } from '../pages/not-found/not-found';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
   {
