@@ -20,11 +20,11 @@ function includeSpace(control:AbstractControl): null| ValidationErrors{
 })
 export class SignUp {
   form: FormGroup = new FormGroup({
-    username: new FormControl('', [Validators.required,Validators.minLength(6),includeSpace]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required,Validators.pattern('^[A-Za-z\\d]{6,}$')]),
-    confirmPassword: new FormControl('', [Validators.required]),
-    rememberMe:new FormControl('')
+    username: new FormControl(' ', [Validators.required,Validators.minLength(6),includeSpace]),
+    email: new FormControl(' ', [Validators.required, Validators.email]),
+    password: new FormControl(' ', [Validators.required,Validators.pattern('^[A-Za-z\\d]{6,}$')]),
+    confirmPassword: new FormControl(' ', [Validators.required]),
+    rememberMe:new FormControl(' ')
   },[MatchPass]);
 
   submitForm(form:AbstractControl){

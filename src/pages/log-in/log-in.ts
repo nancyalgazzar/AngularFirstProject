@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-log-in',
-  imports: [FormsModule],
+  imports: [FormsModule,RouterLink],
   templateUrl: './log-in.html',
   styleUrl: './log-in.css',
 })
