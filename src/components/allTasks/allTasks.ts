@@ -1,20 +1,19 @@
 import { Component, EventEmitter, inject, Input, Output, SimpleChanges } from '@angular/core';
 import { changeOgj, Task } from '../../Model/TaskModel';
-import { TaskCard } from '../TaskCard/TaskCard';
 import { ErrorMsg } from '../../Model/ErrorModel';
+import { TaskCard } from '../TaskCard/TaskCard';
 import { TasksService } from '../../app/services/Tasks/TaaksService';
 
 @Component({
-  selector: 'app-done-tasks',
+  selector: 'app-allTasks',
   imports: [TaskCard],
-  templateUrl: './done-tasks.html',
-  styleUrl: './done-tasks.css',
+  templateUrl: './allTasks.html',
+  styleUrl: './allTasks.css',
 })
-export class DoneTasks {
+export class AllTasks {
   taskService = inject(TasksService);
   tasks: Task[] | null = null;
   ngOnInit() {
-    this.tasks = this.taskService.getDoneTasks();
+    this.tasks = this.taskService.getTasks();
   }
- 
 }

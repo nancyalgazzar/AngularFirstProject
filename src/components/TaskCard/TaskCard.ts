@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { Task, Priority, Category, State, changeOgj, changeType } from '../../Model/TaskModel';
 import { Form } from '../Form/Form';
+import { TasksService } from '../../app/services/Tasks/TaaksService';
 
 @Component({
   templateUrl: './TaskCard.html',
@@ -10,25 +11,14 @@ import { Form } from '../Form/Form';
 })
 export class TaskCard {
   Category = Category;
+  taskService = inject(TasksService);
   @Input() task: Task = new Task();
-  @Output() taskEmitter = new EventEmitter<changeOgj>();
-  updated(t: Task) {
-    this.taskEmitter.emit({
-      ts: t,
-      ch: changeType.update,
-    });
+  delete() {
+    this.taskService.deleteTask(this.task);
   }
-  changed(btn: HTMLButtonElement) {
-    let c = changeType.update;
-    if (Object.values(changeType).includes(btn.innerText.toLowerCase())) {
-      c = changeType[btn.innerText.toLowerCase() as keyof typeof changeType];
-    }
+  Done() {
 
-    let obj: changeOgj = {
-      ts: this.task,
-      ch: c,
-    };
-    this.taskEmitter.emit(obj);
+    this.taskService.markDone(this.task);
   }
   prioritycheck(): string {
     switch (Number(this.task.priority)) {

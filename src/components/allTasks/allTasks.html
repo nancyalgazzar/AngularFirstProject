@@ -1,0 +1,9 @@
+<div class="d-flex flex-wrap" >
+  @if (tasks) {
+    @for (t of tasks; track t.id) {
+      <app-taskcard [task]="t"></app-taskcard>
+    }
+  } @else {
+    <p>No tasks Yet 😓😓</p>
+  }
+</div>

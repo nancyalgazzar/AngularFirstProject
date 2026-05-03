@@ -1,5 +1,7 @@
-<app-header></app-header>
-<app-form (task)="getNewTask($event)"></app-form>
-<app-tasklist [task]="taskobj"></app-tasklist>
-
-<app-footer></app-footer>
+<div class="d-flex flex-column justify-content-between "  style="height: 100vh;">
+  <div>
+    <app-header></app-header>
+    <router-outlet></router-outlet>
+  </div>
+  <app-footer ></app-footer>
+</div>

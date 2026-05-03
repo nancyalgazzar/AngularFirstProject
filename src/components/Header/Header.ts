@@ -1,5 +1,4 @@
 import { Component } from "@angular/core";
-import { Slider } from "../slider/slider";
 import { RouterLink } from "@angular/router";
 
 
@@ -7,7 +6,7 @@ import { RouterLink } from "@angular/router";
     templateUrl: "./Header.html",
     styleUrl: "./Header.css",
     selector: "app-header",
-    imports: [Slider, RouterLink]
+    imports: [ RouterLink]
 })
 
 export class Header { }

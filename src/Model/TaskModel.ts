@@ -25,11 +25,12 @@ export class Task {
   category: Category = Category.NA;
   tags: string = '';
   state: State = State.notDone;
-  private id: string;
+   id: string;
   constructor() {
     this.id = uuid();
   }
   get ID() {
+    console.log("id",this.id);
     return this.id;
   }
   clearValues(): void {

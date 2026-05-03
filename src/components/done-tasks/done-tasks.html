@@ -1,7 +1,7 @@
 <div class="d-flex flex-wrap">
-  @if(count>0){
-    @for (t of tasks; track t.ID) {
-      <app-taskcard (taskEmitter)="change($event)" [task]="t"></app-taskcard>
+  @if(tasks){
+    @for (t of tasks; track t.id) {
+      <app-taskcard  [task]="t"></app-taskcard>
     }
   }@else{
     <p> NO done Tasks yet 😢😢</p>

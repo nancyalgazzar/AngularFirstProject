@@ -1,18 +1,19 @@
-<div class="container my-3">
-  <ul class="nav nav-tabs " id="myTab" role="tablist">
+<!-- <div class="container my-3">
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item">
       <button
+        routerLink="tasks"
         class="nav-link"
         id="0"
         [class]="listType == 0 ? 'active' : ''"
-        
         (click)="selectList($event.target)"
       >
-        ALl
+        ALL
       </button>
     </li>
     <li class="nav-item">
       <button
+        routerLink="done"
         class="nav-link"
         id="1"
         [class]="listType == 1 ? 'active' : ''"
@@ -23,6 +24,7 @@
     </li>
     <li class="nav-item">
       <button
+        routerLink="pending"
         class="nav-link"
         id="2"
         [class]="listType == 2 ? 'active' : ''"
@@ -32,23 +34,16 @@
       </button>
     </li>
   </ul>
-  @switch (listType) {
-    @case (1) {
-      <app-done-tasks (taskEmitter)="change($event)" [tasks]="doneList"></app-done-tasks>
-    }
-    @case (2) {
-      <app-not-done-tasks (taskEmitter)="change($event)" [tasks]="notdoneList"></app-not-done-tasks>
-    }
-    @default {
-      <div class="d-flex flex-wrap">
-        @if (count > 0) {
-          @for (t of taskList; track t.ID) {
-            <app-taskcard (taskEmitter)="change($event)" [task]="t"></app-taskcard>
-          }
-        } @else {
-          <p>No tasks Yet 😓😓</p>
-        }
-      </div>
-    }
-  }
+  <router-outlet></router-outlet> -->
+<!-- </div> -->
+<div class="d-flex " style="height: 80vh;">
+  <div class="fw-bold text-light col-2 bg-dark m-0" >
+    <div class="offcanvas-body p-5 m-50">
+      <a routerLink="tasks" class="nav-link fw-bold text-light" id="0">ALL</a>
+      <a routerLink="done" class="nav-link fw-bold text-light py-2" id="1">Done</a>
+      <a routerLink="pending" class="nav-link fw-bold text-light" id="2">Pending </a>
+    </div>
+  </div>
+  <div class="col-10" style="overflow-y: auto; height:80vh">
+  <router-outlet ></router-outlet></div>
 </div>
