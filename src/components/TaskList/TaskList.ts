@@ -9,6 +9,7 @@ import { RouterOutlet, RouterLinkWithHref } from '@angular/router';
   imports: [RouterOutlet, RouterLinkWithHref],
 })
 export class TaskList {
+  
   listType = 0;
   selectList(e: EventTarget | null) {
     if (!e) return;

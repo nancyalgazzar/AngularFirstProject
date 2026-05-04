@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { v4 as uuid } from 'uuid';
 type msgType = 'success' | 'error' | 'warning' | 'info';
 type message = { msg: string; type: msgType; id: string };
@@ -6,12 +6,12 @@ type message = { msg: string; type: msgType; id: string };
   providedIn: 'root',
 })
 export class NotificationService {
-  messageToShow: message[] = [];
+  messageToShow = signal<message[]>([]);
   timers: Map<string, number> = new Map();
   addmessage(m: string, t: msgType) {
     let id = uuid();
     let mes = { msg: m, type: t, id: id };
-    this.messageToShow = [...this.messageToShow, mes];
+    this.messageToShow.set([...this.messageToShow(), mes]);
     console.log(this.messageToShow);
     let timer = setTimeout(() => {
       this.removemsg(id);
@@ -19,10 +19,10 @@ export class NotificationService {
     this.timers.set(id, timer);
   }
   clear() {
-    this.messageToShow = [];
+    this.messageToShow.set([]);
   }
   removemsg(id: string) {
-    this.messageToShow = this.messageToShow.filter((p) => p.id != id);
+    this.messageToShow.update((msgs) => msgs.filter((p) => p.id != id));
     this.timers.delete(id);
   }
 }
