@@ -3,7 +3,7 @@ import { CanActivateFn, Router } from '@angular/router';
 
 export const homeGuard: CanActivateFn = (route, state) => {
   let router = inject(Router);
-  if (localStorage.getItem('email')) {
+  if (localStorage.getItem('email')||sessionStorage.getItem('email')) {
     return true;
   }
   router.navigate(['/login']);

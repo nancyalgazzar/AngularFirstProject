@@ -12,9 +12,6 @@ import { TasksService } from '../../app/services/Tasks/TaaksService';
 })
 export class DoneTasks {
   taskService = inject(TasksService);
-  tasks: Task[] | null = null;
-  ngOnInit() {
-    this.tasks = this.taskService.getDoneTasks();
-  }
+
  
 }

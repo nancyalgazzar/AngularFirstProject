@@ -10,6 +10,9 @@ import { firstValueFrom } from 'rxjs';
 export class TasksService {
   tasksList: null | Task[] = null;
   http = inject(HttpClient);
+  hastasks() {
+    return this.tasksList && this.tasksList.length > 0;
+  }
   getAllTasks() {
     this.http.get<Task[]>(`${BASEURL}/tasks`).subscribe({
       next: (data) => {
@@ -35,6 +38,7 @@ export class TasksService {
     try {
       let added = await firstValueFrom(this.http.post(`${BASEURL}/tasks`, task));
       console.log(added);
+      this.getAllTasks();
       return true;
     } catch (error) {
       console.log(error);
@@ -45,6 +49,8 @@ export class TasksService {
     try {
       let temp = await firstValueFrom(this.http.put(`${BASEURL}/tasks/${task.id}`, task));
       console.log(temp);
+      this.getAllTasks();
+
       return true;
     } catch (error) {
       console.log(error);
@@ -55,6 +61,8 @@ export class TasksService {
     try {
       let temp = await firstValueFrom(this.http.delete(`${BASEURL}/tasks/${task.id}`));
       console.log(temp);
+      this.getAllTasks();
+
       return true;
     } catch (error) {
       console.log(error);
@@ -62,13 +70,15 @@ export class TasksService {
     return false;
   }
   async markDone(task: Task) {
-    console.log(task.id)
-    console.log("url",`${BASEURL}/tasks/${task.id}`)
+    console.log(task.id);
+    console.log('url', `${BASEURL}/tasks/${task.id}`);
     try {
       let temp = await firstValueFrom(
         this.http.patch(`${BASEURL}/tasks/${task.id}`, { state: State.Done }),
       );
       console.log(temp);
+      this.getAllTasks();
+
       return true;
     } catch (error) {
       console.log(error);

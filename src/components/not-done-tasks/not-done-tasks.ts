@@ -12,8 +12,5 @@ import { TasksService } from '../../app/services/Tasks/TaaksService';
 })
 export class NotDoneTasks {
   taskService = inject(TasksService)
-  tasks: Task[]|null  = null;
-  ngOnInit(){
-    this.tasks = this.taskService.getPendingTasks()
-  }
+ 
 }

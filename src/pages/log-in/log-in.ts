@@ -19,6 +19,7 @@ export class LogIn {
       localStorage.setItem('email', form.value?.['email']);
     }
     this.auth.IsAutherized(form.value?.['email'], form.value?.['password']).subscribe((user) => {
+      sessionStorage.setItem('email', form.value?.['email'])
       if (user) {
         this.router.navigate(['/main']);
       } else {

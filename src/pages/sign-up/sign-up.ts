@@ -44,21 +44,14 @@ export class SignUp {
   auth = inject(Authentication);
   notify = inject(NotificationService);
   async submitForm(form: AbstractControl) {
-    if (
-      await this.auth.addUser(
-        form.get('email')?.value,
-        form.get('password')?.value,
-        form.get('username')?.value,
-      )
-    ) {
+    if (await this.auth.addUser(form.get('email')?.value,form.get('password')?.value,form.get('username')?.value,)) {
       if (form.get('rememberMe')?.value) {
         localStorage.setItem('email', form.get('email')?.value);
-        localStorage.setItem('password', form.get('password')?.value);
-        localStorage.setItem('username', form.get('username')?.value);
       }
+      sessionStorage.setItem('email', form.get('email')?.value);
       this.router.navigate(['/main']);
     } else {
-      this.notify.addmessage("Error during sign up, Please try again later",'error');
+      this.notify.addmessage('Error during sign up, Please try again later', 'error');
     }
   }
 }

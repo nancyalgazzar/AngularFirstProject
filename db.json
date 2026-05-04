@@ -31,16 +31,6 @@
       "tags": " "
     },
     {
-      "id": "2",
-      "title": "task2",
-      "description": "desc2",
-      "priority": 2,
-      "category": "personal",
-      "date": "22-2-2027",
-      "state": 1,
-      "tags": " "
-    },
-    {
       "id": "3",
       "title": "task3",
       "description": "desc3",
