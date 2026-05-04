@@ -12,4 +12,7 @@ import { TasksService } from '../../app/services/Tasks/TaaksService';
 })
 export class AllTasks {
   taskService = inject(TasksService);
+  ngOnInit(){
+    console.log(this.taskService.tasksList());
+  }
 }

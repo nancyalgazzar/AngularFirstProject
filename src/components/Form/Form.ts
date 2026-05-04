@@ -10,6 +10,7 @@ import {
 } from '@angular/forms';
 import { ErrorMsg } from '../../Model/ErrorModel';
 import { TasksService } from '../../app/services/Tasks/TaaksService';
+import { NotificationService } from '../../app/services/Notification/notification-service';
 
 @Component({
   templateUrl: './Form.html',
@@ -18,6 +19,7 @@ import { TasksService } from '../../app/services/Tasks/TaaksService';
   imports: [FormsModule, ReactiveFormsModule],
 })
 export class Form {
+  notification = inject(NotificationService);
   taskservice = inject(TasksService);
   errorMsg: ErrorMsg = {
     msg: 'cccc',
@@ -45,9 +47,11 @@ export class Form {
   }
   register() {
     if (!this.update) {
-      if (this.validInputs()) {
-        this.taskservice.addTask(this.task);
+      if (!this.validInputs()) {
+        this.notification.addmessage('all field must be filled', 'warning');
+        return;
       }
+      this.taskservice.addTask(this.task);
     } else {
       this.taskservice.updateTask(this.task);
       this.updateTask.emit('');

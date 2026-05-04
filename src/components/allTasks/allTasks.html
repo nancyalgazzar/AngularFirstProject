@@ -1,6 +1,6 @@
-<div class="d-flex flex-wrap" >
+<div class="d-flex flex-wrap">
   @if (taskService.hastasks()) {
-    @for (t of taskService.tasksList; track t.id) {
+    @for (t of taskService.tasksList() ?? []; track t.id) {
       <app-taskcard [task]="t"></app-taskcard>
     }
   } @else {

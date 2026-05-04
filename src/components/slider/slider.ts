@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './slider.css',
 })
 export class Slider {
-
+  detector = inject(ChangeDetectorRef)
   Images: string[] = ["infi.jpg", "cover.jpg", "infinity.webp"]
   idx = 0
   timer: number = -1;
@@ -32,6 +32,7 @@ export class Slider {
   ngOnInit() {
     this.timer = setInterval(() => {
       this.next()
+      this.detector.detectChanges()
     }, 1000);
   }
 }

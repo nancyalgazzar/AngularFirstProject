@@ -1,22 +1,22 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import { BASEURL } from '../../../Model/constants';
 import { State, Task } from '../../../Model/TaskModel';
 import { firstValueFrom } from 'rxjs';
+import { NotificationService } from '../Notification/notification-service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TasksService {
-  tasksList: null | Task[] = null;
+  notify = inject(NotificationService)
+  tasksList = signal<null | Task[]>(null);
   http = inject(HttpClient);
-  hastasks() {
-    return this.tasksList && this.tasksList.length > 0;
-  }
+  hastasks=computed(() => (this.tasksList()?.length ?? 0) > 0)
   getAllTasks() {
     this.http.get<Task[]>(`${BASEURL}/tasks`).subscribe({
       next: (data) => {
-        this.tasksList = data;
+        this.tasksList.set(data);
       },
       error(err) {
         console.log(err);
@@ -26,18 +26,16 @@ export class TasksService {
   getTasks() {
     return this.tasksList;
   }
-  getPendingTasks(): Task[] | null {
-    if (this.tasksList) return this.tasksList.filter((p) => p.state === State.notDone);
-    return null;
-  }
-  getDoneTasks() {
-    if (this.tasksList) return this.tasksList?.filter((p) => p.state === State.Done);
-    return null;
-  }
+  getPendingTasks = computed(() => {
+   return this.tasksList()?.filter((p) => p.state === State.notDone) ?? null;
+  });
+  getDoneTasks = computed(() => {
+   return this.tasksList()?.filter((p) => p.state === State.Done) ?? null;
+  });
   async addTask(task: Task) {
     try {
       let added = await firstValueFrom(this.http.post(`${BASEURL}/tasks`, task));
-      console.log(added);
+      this.notify.addmessage('Task added sucessfully', 'success');
       this.getAllTasks();
       return true;
     } catch (error) {
@@ -48,7 +46,7 @@ export class TasksService {
   async updateTask(task: Task) {
     try {
       let temp = await firstValueFrom(this.http.put(`${BASEURL}/tasks/${task.id}`, task));
-      console.log(temp);
+      this.notify.addmessage('Task Updated sucessfully', 'success');
       this.getAllTasks();
 
       return true;
@@ -60,7 +58,7 @@ export class TasksService {
   async deleteTask(task: Task) {
     try {
       let temp = await firstValueFrom(this.http.delete(`${BASEURL}/tasks/${task.id}`));
-      console.log(temp);
+      this.notify.addmessage('Task deleted sucessfully', 'success');
       this.getAllTasks();
 
       return true;
@@ -76,7 +74,7 @@ export class TasksService {
       let temp = await firstValueFrom(
         this.http.patch(`${BASEURL}/tasks/${task.id}`, { state: State.Done }),
       );
-      console.log(temp);
+      this.notify.addmessage('Task is done', 'info');
       this.getAllTasks();
 
       return true;
