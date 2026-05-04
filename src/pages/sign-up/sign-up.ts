@@ -9,6 +9,7 @@ import {
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { Authentication } from '../../app/services/authentication/authentication';
+import { NotificationService } from '../../app/services/Notification/notification-service';
 
 function MatchPass(form: AbstractControl): null | ValidationErrors {
   let password = form.value['password'];
@@ -41,6 +42,7 @@ export class SignUp {
   );
   router = inject(Router);
   auth = inject(Authentication);
+  notify = inject(NotificationService);
   async submitForm(form: AbstractControl) {
     if (
       await this.auth.addUser(
@@ -54,7 +56,9 @@ export class SignUp {
         localStorage.setItem('password', form.get('password')?.value);
         localStorage.setItem('username', form.get('username')?.value);
       }
-      this.router.navigate(['/main'])
+      this.router.navigate(['/main']);
+    } else {
+      this.notify.addmessage("Error during sign up, Please try again later",'error');
     }
   }
 }

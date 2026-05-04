@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { Authentication } from '../../app/services/authentication/authentication';
+import { NotificationService } from '../../app/services/Notification/notification-service';
 
 @Component({
   selector: 'app-log-in',
@@ -10,7 +11,8 @@ import { Authentication } from '../../app/services/authentication/authentication
   styleUrl: './log-in.css',
 })
 export class LogIn {
-   router = inject(Router);
+  notify = inject(NotificationService);
+  router = inject(Router);
   auth = inject(Authentication);
   LogedIn(form: NgForm) {
     if (form.value?.['rememberMe']) {
@@ -20,7 +22,7 @@ export class LogIn {
       if (user) {
         this.router.navigate(['/main']);
       } else {
-        //error message
+        this.notify.addmessage('Credentials are Invalid ', 'error');
       }
     });
   }

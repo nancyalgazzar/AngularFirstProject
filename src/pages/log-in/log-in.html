@@ -24,7 +24,7 @@
       <input  name="rememberMe" ngModel type="checkbox" class="form-check-input" id="rememberme" />
       <label class="form-check-label" for="rememberme">Remember Me</label>
     </div>
-    <button type="submit" class="btn btn-primary">Log In</button>
+    <button [disabled]="form.invalid" type="submit" class="btn btn-primary">Log In</button>
 
         <div class="text-center"> <a class="fs-6" routerLink="/signup"> Sign Up</a> </div>
 
