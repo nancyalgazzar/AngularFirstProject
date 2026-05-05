@@ -1,22 +1,22 @@
-<div class="d-flex" style="height: 100%">
-  <div class="fw-bold text-light col-1 col-md-2 bg-dark m-0">
+<div class="d-flex " style="height: 100%">
+  <div class="fw-bold text-light col-1 col-md-2 bg-dark m-0 pt-3">
     <div class="offcanvas-header">
-      <div class="d-none d-md-flex align-items-center">
-        <i class="bi bi-calendar-fill mx-2"></i>
-        <h4>Tasks</h4>
-      </div>
+      <button class="d-none d-md-flex align-items-center btn border-0" disabled>
+        <i class="bi bi-calendar-fill mx-2 fs-3"></i>
+        <h4 class="fs-3">Tasks</h4>
+      </button>
     </div>
     <hr class="mx-3" />
-    <div class="offcanvas-body">
-      <button routerLink="tasks" class="d-flex w-100 p-2 btn text-secondary align-items-center" [ngClass]="checked()==='all'?'active btn-primary text-light':''" (click)="checked.set('all')">
+    <div class="offcanvas-body h-50 w-100 d-flex flex-column align-items-center justify-content-evenly">
+      <button routerLink="tasks" class="d-flex w-75 btn text-secondary align-items-center " [ngClass]="checked()==='all'?'active btn-primary text-light':''" (click)="checked.set('all')">
         <i class="bi bi-calendar2-check-fill mx-2 fs-2"></i>
         <h5 class="d-none d-md-inline m-0">ALL</h5>
       </button>
-      <button routerLink="done" class="d-flex w-100 p-2 btn text-secondary align-items-center" [ngClass]="checked()==='done'?'active btn-primary text-light':''" (click)="checked.set('done')">
+      <button routerLink="done" class="d-flex w-75 btn text-secondary align-items-center " [ngClass]="checked()==='done'?'active btn-primary text-light':''" (click)="checked.set('done')">
         <i class="bi bi-check mx-2 fs-1"></i>
         <h5 class="d-none d-md-inline py-2">Done</h5>
       </button>
-      <button routerLink="pending" class="d-flex w-100 p-2 btn text-secondary align-items-center" [ngClass]="checked()==='pending'?'active btn-primary text-light':''" (click)="checked.set('pending')">
+      <button routerLink="pending" class="d-flex w-75  btn text-secondary align-items-center " [ngClass]="checked()==='pending'?'active btn-primary text-light':''" (click)="checked.set('pending')">
         <i class="bi bi-clock mx-2 fs-2"></i>
         <h5 class="d-none d-md-inline">Pending</h5>
       </button>
