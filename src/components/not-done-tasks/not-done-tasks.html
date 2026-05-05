@@ -1,4 +1,4 @@
-<div class="d-flex flex-wrap ">
+<div class="d-flex flex-wrap justify-content-center">
   @if (taskService.hastasks()) {
     @for (t of taskService.getPendingTasks(); track t.id) {
       <app-taskcard  [task]="t"></app-taskcard>

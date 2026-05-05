@@ -1,13 +1,14 @@
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
-import { Task, Priority, Category, State, changeOgj, changeType } from '../../Model/TaskModel';
+import { Component, inject, Input } from '@angular/core';
+import { Task, Priority, Category } from '../../Model/TaskModel';
 import { Form } from '../Form/Form';
 import { TasksService } from '../../app/services/Tasks/TaaksService';
+import { NgClass } from '@angular/common';
 
 @Component({
   templateUrl: './TaskCard.html',
   styleUrl: './TaskCard.css',
   selector: 'app-taskcard',
-  imports: [Form],
+  imports: [Form, NgClass],
 })
 export class TaskCard {
   Category = Category;

@@ -4,12 +4,12 @@ import { LogIn } from '../pages/log-in/log-in';
 import { SignUp } from '../pages/sign-up/sign-up';
 import { NotFound } from '../pages/not-found/not-found';
 import { homeGuard } from './Guards/home-guard';
-import { Form } from '../components/Form/Form';
 import { Slider } from '../components/slider/slider';
 import { TaskList } from '../components/TaskList/TaskList';
 import { NotDoneTasks } from '../components/not-done-tasks/not-done-tasks';
 import { DoneTasks } from '../components/done-tasks/done-tasks';
 import { AllTasks } from '../components/allTasks/allTasks';
+import { AddTask } from '../components/add-task/add-task';
 
 export const routes: Routes = [
   {
@@ -41,7 +41,7 @@ export const routes: Routes = [
       },
       {
         path: 'add-task',
-        component: Form,
+        component: AddTask,
       },
       {
         path: 'tasks',

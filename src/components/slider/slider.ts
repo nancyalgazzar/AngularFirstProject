@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class Slider {
   detector = inject(ChangeDetectorRef)
-  Images: string[] = ["infi.jpg", "cover.jpg", "infinity.webp"]
+  Images: string[] = ["check2.avif", "check3.avif", "check4.jpg","check5.avif"]
   idx = 0
   timer: number = -1;
   setImage(event: Event) {

@@ -1,0 +1,7 @@
+button:hover{
+    background-color: rgb(4, 4, 60);
+}
+.clicked{
+    color: white;
+    background-color: blue;
+}

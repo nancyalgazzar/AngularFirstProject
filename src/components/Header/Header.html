@@ -1,18 +1,12 @@
-<ul class="nav d-flex flex-row justify-content-between m-2">
-  <h1 class="text-uppercase text-success fw-bold text-center">Task Manager</h1>
-  <div class="d-flex">
-    <li class="nav-item">
-      <a routerLink="home" class="nav-link active" aria-current="page" >Home</a>
-    </li>
-    <li class="nav-item">
-      <a routerLink="tasks" class="nav-link" >Tasks</a>
-    </li>
-    <li class="nav-item">
-      <a routerLink="add-task" class="nav-link" >Add Task</a>
-    </li>
+<nav class="nav position-relative align-items-center px-3 py-2 bg-dark">
+  <div class="nav-item  d-flex align-items-center">
+  <img src="app.png" width="40" height="40" class="rounded me-2" />
+    <h5 class="text-light m-0">Task Manager</h5>
   </div>
-  <!-- <div>
-    <button class="btn btn-success mx-3" routerLink="/signup">SignUp</button>
-    <button class="btn btn-primary" routerLink="/login">LogIn</button>
-  </div> -->
-</ul>
+  <div class="position-absolute start-50 translate-middle-x d-flex gap-2">
+    <button routerLink="home" #home class="text-light btn" [ngClass]="btnclicked()=='home'?' clicked':''" (click)='btnclicked.set("home")'>Home</button>
+    <button routerLink="tasks" class="btn text-light mx-2" [ngClass]="btnclicked()=='task'?' clicked':''" (click)='btnclicked.set("task")'>Tasks</button>
+
+    <button routerLink="add-task" class="btn text-light" [ngClass]="btnclicked()=='add'?' clicked':''" (click)='btnclicked.set("add")'>Add Task</button>
+  </div>
+</nav>
