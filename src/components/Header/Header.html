@@ -1,7 +1,7 @@
 <nav class="nav position-relative align-items-center px-3 py-2 bg-dark">
   <div class="nav-item  d-flex align-items-center">
   <img src="app.png" width="40" height="40" class="rounded me-2" />
-    <h5 class="text-light m-0">Task Manager</h5>
+    <h5 class="text-light m-0 d-none d-md-inline">Task Manager</h5>
   </div>
   <div class="position-absolute start-50 translate-middle-x d-flex gap-2">
     <button routerLink="home" #home class="text-light btn" [ngClass]="btnclicked()=='home'?' clicked':''" (click)='btnclicked.set("home")'>Home</button>

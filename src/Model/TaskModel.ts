@@ -21,7 +21,7 @@ export class Task {
   title: string = '';
   description: string = '';
   priority: Priority = Priority.NA;
-  date: Date | string = new Date().toLocaleDateString();
+  date: Date | string = new Date().toISOString().split('T')[0];
   category: Category = Category.NA;
   tags: string = '';
   state: State = State.notDone;

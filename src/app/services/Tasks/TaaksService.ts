@@ -2,35 +2,42 @@ import { HttpClient } from '@angular/common/http';
 import { computed, inject, Injectable, signal } from '@angular/core';
 import { BASEURL } from '../../../Model/constants';
 import { State, Task } from '../../../Model/TaskModel';
-import { firstValueFrom } from 'rxjs';
+import { catchError, EMPTY, firstValueFrom } from 'rxjs';
 import { NotificationService } from '../Notification/notification-service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TasksService {
-  notify = inject(NotificationService)
+  private notify = inject(NotificationService);
   tasksList = signal<null | Task[]>(null);
   http = inject(HttpClient);
-  hastasks=computed(() => (this.tasksList()?.length ?? 0) > 0)
+  hastasks = computed(() => (this.tasksList()?.length ?? 0) > 0);
   getAllTasks() {
-    this.http.get<Task[]>(`${BASEURL}/tasks`).subscribe({
-      next: (data) => {
-        this.tasksList.set(data);
-      },
-      error(err) {
-        console.log(err);
-      },
-    });
+    try {
+      this.http
+        .get<Task[]>(`${BASEURL}/tasks`)
+        .pipe(
+          catchError(() => {
+            this.notify.addmessage('Failed to load the tasks', 'error');
+            return EMPTY;
+          }),
+        )
+        .subscribe({
+          next: (data) => {
+            this.tasksList.set(data);
+          },
+        });
+    } catch {}
   }
   getTasks() {
     return this.tasksList;
   }
   getPendingTasks = computed(() => {
-   return this.tasksList()?.filter((p) => p.state === State.notDone) ?? null;
+    return this.tasksList()?.filter((p) => p.state === State.notDone) ?? null;
   });
   getDoneTasks = computed(() => {
-   return this.tasksList()?.filter((p) => p.state === State.Done) ?? null;
+    return this.tasksList()?.filter((p) => p.state === State.Done) ?? null;
   });
   async addTask(task: Task) {
     try {
@@ -39,7 +46,7 @@ export class TasksService {
       this.getAllTasks();
       return true;
     } catch (error) {
-      console.log(error);
+      this.notify.addmessage('Failed to add the task  ', 'error');
     }
     return false;
   }
@@ -51,7 +58,7 @@ export class TasksService {
 
       return true;
     } catch (error) {
-      console.log(error);
+      this.notify.addmessage('Failed to update the task  ', 'error');
     }
     return false;
   }
@@ -63,7 +70,7 @@ export class TasksService {
 
       return true;
     } catch (error) {
-      console.log(error);
+      this.notify.addmessage('Failed to delete the task  ', 'error');
     }
     return false;
   }
@@ -79,7 +86,7 @@ export class TasksService {
 
       return true;
     } catch (error) {
-      console.log(error);
+      this.notify.addmessage('Failed to make the task as done', 'error');
     }
     return false;
   }
