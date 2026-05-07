@@ -41,19 +41,21 @@
       "email": "nancyayman89@email.com",
       "password": "mmmmmm",
       "username": "nancyAyman"
+    },
+    {
+      "id": "OiHJZ-AtRxo",
+      "email": "nancyayman@gmail.com",
+      "password": "pppppp",
+      "username": "nancyAyman"
+    },
+    {
+      "id": "ynLzyenRyN0",
+      "email": "nancyayma@gmail.com",
+      "password": "pppppp",
+      "username": "nancyayamn"
     }
   ],
   "tasks": [
-    {
-      "id": "1",
-      "title": "task1",
-      "description": "desc1",
-      "priority": 0,
-      "category": "study",
-      "date": "20-1-2027",
-      "state": 0,
-      "tags": " "
-    },
     {
       "id": "3",
       "title": "task3",
@@ -85,23 +87,13 @@
       "id": "BLLMUW5JKbo"
     },
     {
-      "title": "dd",
-      "description": "dd",
-      "priority": 1,
-      "date": "2026-05-12",
-      "category": 1,
-      "tags": "ddd",
-      "state": 1,
-      "id": "s_C03OoSLbU"
-    },
-    {
-      "title": "dd",
+      "title": "edit",
       "description": "dd",
       "priority": 2,
       "date": "2026-05-26",
       "category": 3,
       "tags": "dd",
-      "state": 1,
+      "state": 0,
       "id": "jUqoQ-LZXtI"
     },
     {
@@ -162,16 +154,6 @@
       "category": 1,
       "tags": "qq",
       "state": 1,
-      "id": "q32cp2ZCFMW"
-    },
-    {
-      "title": "qq",
-      "description": "qq",
-      "priority": 2,
-      "date": "2026-04-29",
-      "category": 1,
-      "tags": "qq",
-      "state": 1,
       "id": "q35cp2ZCFMW"
     },
     {
@@ -183,7 +165,27 @@
       "tags": "a",
       "state": 1,
       "id": "qVUMW5VQzfI"
+    },
+    {
+      "title": "ww",
+      "description": "w",
+      "priority": 2,
+      "date": "2026-05-27",
+      "category": 1,
+      "tags": "w",
+      "state": 1,
+      "id": "Zyv4Sg_GrW8"
+    },
+    {
+      "title": "new",
+      "description": "n",
+      "priority": 1,
+      "date": "2026-05-07",
+      "category": 1,
+      "tags": "pp",
+      "state": 1,
+      "id": "AWGqrt6i8ao"
     }
   ],
-  "$schema": "./node_modules/json-server/schema.json"
+  "$schema": ["./node_modules/json-server/schema.json"]
 }

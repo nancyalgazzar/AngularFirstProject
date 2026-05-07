@@ -12,7 +12,6 @@ export class NotificationService {
     let id = uuid();
     let mes = { msg: m, type: t, id: id };
     this.messageToShow.set([...this.messageToShow(), mes]);
-    console.log(this.messageToShow);
     let timer = setTimeout(() => {
       this.removemsg(id);
     }, 5000);
