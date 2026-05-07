@@ -12,8 +12,7 @@ The application also includes authentication features such as Sign Up and Log In
 ## Demo Video
 
 
-<video src="./demo.mp4" controls width="700"></video>
-
+![Demo](./demo.gif)
 ## Features
 
 ### Authentication
