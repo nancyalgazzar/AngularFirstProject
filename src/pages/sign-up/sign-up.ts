@@ -50,8 +50,6 @@ export class SignUp {
       }
       sessionStorage.setItem('email', form.get('email')?.value);
       this.router.navigate(['/main']);
-    } else {
-      this.notify.addmessage('Error during sign up, Please try again later', 'error');
-    }
+    } 
   }
 }

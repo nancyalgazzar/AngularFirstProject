@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { BASEURL } from '../../../Model/constants';
 import { firstValueFrom, map } from 'rxjs';
+import { NotificationService } from '../Notification/notification-service';
 
 @Injectable({
   providedIn: 'root',
@@ -9,6 +10,7 @@ import { firstValueFrom, map } from 'rxjs';
 export class Authentication {
   static counter = 10;
   http = inject(HttpClient);
+  notify = inject(NotificationService);
   IsAutherized(email: string, password: string) {
     return this.http.get<User[]>(`${BASEURL}/users?email=${email}`).pipe(
       map((users) => {
@@ -28,7 +30,10 @@ export class Authentication {
   async addUser(email: string, password: string, username: string): Promise<boolean> {
     const firsttime = await firstValueFrom(this.isFirstTimeEmail(email));
 
-    if (!firsttime) return false;
+    if (!firsttime) {
+      this.notify.addmessage('this Email is already used', 'error');
+      return false;
+    }
 
     try {
       await firstValueFrom(
@@ -39,9 +44,12 @@ export class Authentication {
           username,
         }),
       );
-      Authentication.counter++
+      Authentication.counter++;
+      this.notify.addmessage(`Welcome Mr/s ${username}`, 'success');
+
       return true;
     } catch {
+      this.notify.addmessage('Error during sign up, Please try again later', 'error');
       return false;
     }
   }

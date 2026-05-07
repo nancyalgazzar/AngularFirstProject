@@ -1,59 +1,87 @@
-# AngularFirstProject
+# Task Manager App
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.8.
+Time is a crucial asset that needs proper management.  
+This application was built to help users organize and manage their daily tasks efficiently while improving productivity through a simple and user-friendly interface.
 
-## Development server
+The project is a modern task management web application built with **Angular** and powered by **JSON Server** as a mock backend API.  
+Users can create tasks with descriptions, deadlines, priorities, and categories, update tasks when needed, and mark them as completed once finished.  
+The application also includes authentication features such as Sign Up and Log In for a complete user experience.
 
-To start a local development server, run:
+
+
+## Demo Video
+
+
+<video src="./demo.mp4" controls width="700"></video>
+
+## Features
+
+### Authentication
+- Sign Up
+- Log In
+
+### Task Management
+- Add new tasks
+- Update existing tasks
+- Delete tasks
+- Mark tasks as completed
+
+### Task Details
+Each task includes:
+- Title
+- Description
+- Deadline
+- Priority
+- Category
+
+### Priority Levels
+- Low
+- Medium
+- High
+
+### Categories
+- Study
+- Work
+- Personal
+
+
+## Tech Stack
+
+### Frontend
+- Angular
+- TypeScript
+- HTML
+- CSS / Bootstrap
+
+### Backend
+- JSON Server
+
+
+## Run the project
+
+1. Start the JSON server:
 
 ```bash
-ng serve
+npm run server
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+2. Start the Angular app in your browser:
 
 ```bash
-ng generate component component-name
+npm run app
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+After running `npm run app`, the browser should open automatically at `http://localhost:4200/`.
 
-```bash
-ng generate --help
-```
+## Available scripts
 
-## Building
+- `npm run server` — starts `json-server` using `db.json`
+- `npm run app` — starts the Angular application and opens it in the default browser
+- `npm run build` — builds the production bundle
+- `npm run watch` — builds in development mode and watches for file changes
+- `npm run test` — runs unit tests with Vitest
 
-To build the project run:
+## Notes
 
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- Make sure dependencies are installed first with `npm install`
+- Keep both `server` and `app` running in separate terminals for the full experience

@@ -1,5 +1,5 @@
 <div class="d-flex w-100" style="height: 100%">
-  <div class="fw-bold text-light col-1 col-md-2 bg-dark m-0 pt-3">
+  <div class="fw-bold text-light col-1 col-md-2 bg-dark m-0 pt-3" >
     <div class="offcanvas-header">
       <button class="d-none d-md-flex align-items-center btn border-0" disabled>
         <i class="bi bi-calendar-fill mx-2 fs-3"></i>
@@ -7,7 +7,7 @@
       </button>
     </div>
     <hr class="mx-3" />
-    <div class="offcanvas-body  w-100 d-flex flex-column align-items-center justify-content-evenly" style="min-height: 30vh;">
+    <div class="offcanvas-body  w-100 d-flex flex-column align-items-center justify-content-evenly" style="height: 30vh;">
       <button routerLink="tasks" class="d-flex w-75 btn text-secondary align-items-center " [ngClass]="checked()==='all'?'active btn-primary text-light':''" (click)="checked.set('all')">
         <i class="bi bi-calendar2-check-fill  fs-2 pe-md-2"></i>
         <h5 class="d-none d-md-inline m-0">ALL</h5>
@@ -22,7 +22,7 @@
       </button>
     </div>
   </div>
-  <div class="col-lg-10 col-md-11" style="overflow-y: auto; max-height: 84vh">
+  <div class="col-lg-10 col-md-11" style="overflow-y: auto; height: 84vh">
     <router-outlet></router-outlet>
   </div>
 </div>
